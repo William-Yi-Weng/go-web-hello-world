@@ -4,6 +4,7 @@ Go-web-hello-world is a piece of demo go code to [listen for HTTP Connections](h
 This project will introduce this app running in docker based virtualbox vm or guest vm.
 
 ## Build Go app env
+To support gitlab/kubernetes service sufficiently, my guest vm was allocated 3 CPUs, 4 Gbs memory and more than 30 Gbs Disk space attached.
 ----------
 ### Task 0: Install a ubuntu 16.04 server 64-bit
 - Install [virtualbox](https://www.virtualbox.org/wiki/Linux_Downloads)
