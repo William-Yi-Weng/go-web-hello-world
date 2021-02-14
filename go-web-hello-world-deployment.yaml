@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  go-web-hello-world
+  labels:
+    app.kubernetes.io/name:  hello-world
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name:  hello-world
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name:  hello-world
+    spec:
+      containers:
+      - name: go-web-hello-world
+        image: wingasun/go-web-hello-world:v0.1
+        args:
+          - --bind_ip
+          - 0.0.0.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 31080
+  
