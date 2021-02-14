@@ -42,22 +42,23 @@ This project will introduce this app running in docker based virtualbox vm or gu
 
 ### Task 6: run the app in container
 - Build Dockerfile from golang:1.14.0-alpine. Copy source code from local to container and expose port 8081. Build the app and run the binary program produced
-- Run "$ docker build ." to build image
-- Sidekiq has taken port 8082 in guest, so bind container expose port 8081 to guest local port 8083. "$ docker run -p 8083:8081 xxxxxxxxx"
+- Run ```$ docker build .``` to build image
+- Sidekiq has taken port 8082 in guest, so bind container expose port 8081 to guest local port 8083. ```$ docker run -p 8083:8081 xxxxxxxxx```
 
 ### Task 7: push image to dockerhub
-- Tag built image via "$ docker tag xxxxxx username/go-web-hello-world:v0.1"
+- Tag built image via ```$ docker tag xxxxxx username/go-web-hello-world:v0.1```
 - Create go-web-hello-world repository in docker hub
-- Push taged image to docker hub "$ docker push username/go-web-hello-world:v0.1"
+- Push taged image to docker hub ```$ docker push username/go-web-hello-world:v0.1```
 
 ### Task 8: document the procedure in a MarkDown file
 This README.md
 
 ### Task 9: install a single node Kubernetes cluster using kubeadm
-- Swap is not support with kubernetes, turn swap off with "$ sudo swapoff -a".
-- It will report error 'network plugin is not ready: cni config uninitialized'. We need to specify Pod CIDR range like following (ex. 10.244.0.0/16) "$ kubeadm init --pod-network-cidr=10.244.0.0/16"
+- Swap is not support with kubernetes, turn swap off with ```$ sudo swapoff -a```
+- It will report error 'network plugin is not ready: cni config uninitialized'. We need to specify Pod CIDR range like following (ex. 10.244.0.0/16) 
+  ```$ kubeadm init --pod-network-cidr=10.244.0.0/16```
 - In default, master node is not allowed to schedule any pod on it. We should untaint the master node.
-(https://tachingchen.com/blog/kubernetes-installation-with-kubeadm/)
+  (https://tachingchen.com/blog/kubernetes-installation-with-kubeadm/)
 
 ### Task 10: deploy the hello world container
 - Run the go-web-hello-world-deployment.yaml to create deployment and service
@@ -65,13 +66,14 @@ This README.md
 - Try to visit "http://127.0.0.1:31080", and get the result
 
 ### Task 11: install kubernetes dashboard
-- Edit kubernetes-dashboard service: "$ kubectl -n kubernetes-dashboard edit service kubernetes-dashboard"
+- Edit kubernetes-dashboard service: ```$ kubectl -n kubernetes-dashboard edit service kubernetes-dashboard```
 - Add "nodePort: 31080" under spec ports (https://github.com/kubernetes/dashboard/blob/master/docs/user/accessing-dashboard/README.md)
 - Visit https://127.0.0.1:31081 and accept self-signed certificate
 
 ### Task 12: generate token for dashboard login in task 11
 - Create service account with admin-service-account.yaml
-- Obtain an authentication token for the admin service account by entering: "$ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin | awk '{print $1}')"
+- Obtain an authentication token for the admin service account by entering: 
+  ```$ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin | awk '{print $1}')```
 - Copy/paste the token to connect to the dashboard
 
 ### Task 13: publish your work
