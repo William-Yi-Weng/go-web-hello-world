@@ -19,7 +19,7 @@ This project will introduce this app running in docker based virtualbox vm or gu
 - Check ssh service in VM, and log into vm guest with SSH ($ ssh user@localhost -p 2222)
 
 ### Task 2: install gitlab-ce version in the host
-- Gitlab will use the default account's username root to login or another defined user. Therefor, we should enable root account password before installation
+- Gitlab will use the default account's username root to login or another defined user. Therefore, we should enable root account password before installation
 - Install gitlab-ce
 - Login and initialise password
 
