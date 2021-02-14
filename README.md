@@ -53,4 +53,26 @@ This project will introduce this app running in docker based virtualbox vm or gu
 ### Task 8: document the procedure in a MarkDown file
 This README.md
 
+### Task 9: install a single node Kubernetes cluster using kubeadm
+- Swap is not support with kubernetes, turn swap off with "$ sudo swapoff -a".
+- It will report error 'network plugin is not ready: cni config uninitialized'. We need to specify Pod CIDR range like following (ex. 10.244.0.0/16) "$ kubeadm init --pod-network-cidr=10.244.0.0/16"
+- In default, master node is not allowed to schedule any pod on it. We should untaint the master node.
+(https://tachingchen.com/blog/kubernetes-installation-with-kubeadm/)
 
+### Task 10: deploy the hello world container
+- Run the go-web-hello-world-deployment.yaml to create deployment and service
+- The service will forward the container port to nodePort(guest vm port)
+- Try to visit "http://127.0.0.1:31080", and get the result
+
+### Task 11: install kubernetes dashboard
+- Edit kubernetes-dashboard service: "$ kubectl -n kubernetes-dashboard edit service kubernetes-dashboard"
+- Add "nodePort: 31080" under spec ports (https://github.com/kubernetes/dashboard/blob/master/docs/user/accessing-dashboard/README.md)
+- Visit https://127.0.0.1:31081 and accept self-signed certificate
+
+### Task 12: generate token for dashboard login in task 11
+- Create service account with admin-service-account.yaml
+- Obtain an authentication token for the admin service account by entering: "$ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin | awk '{print $1}')"
+- Copy/paste the token to connect to the dashboard
+
+### Task 13: publish your work
+Done!
