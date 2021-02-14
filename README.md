@@ -1,4 +1,4 @@
-#go-web-hello-world
+go-web-hello-world
 ----------
 Go-web-hello-world is a piece of demo go code to [listen for HTTP Connections](https://gowebexamples.com/hello-world/). 
 This project will introduce this app running in docker based virtualbox vm or guest vm.
